@@ -11,10 +11,13 @@ namespace theater.Models {
       return Showtimes.TryAdd(showtime, MaxSeats);
     }
     public void PrintShowtimes() {
-      Console.WriteLine("Showtime  \t\tAvailable Seats");
-      Console.WriteLine("-------------------------------------------------");
+      if (Showtimes.Keys.Count == 0) {
+        Console.WriteLine("No showtimes");
+        return;
+      }
+
       foreach (KeyValuePair<string, int> showtime in Showtimes) {
-        Console.WriteLine($"{showtime.Key} -\t\t{showtime.Value}");
+        Console.WriteLine($" {showtime.Key} - Available seats: {showtime.Value}");
       }
     }
     public List<Ticket> BuyTicket(string showtime, int ticketAmount = 1) {
